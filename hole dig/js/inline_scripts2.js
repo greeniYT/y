@@ -9,7 +9,7 @@
 window.__GS_BOOT_CFG__={version: 0, sdkSrc: 'sdk-bundle/gamepush.gd.js'};
 
 
-    const buildUrl = "Build";
+    const buildUrl = "https://cdn.jsdelivr.net/gh/greeniYT/y@main/hole%20dig/js";
     const loaderUrl = buildUrl + "/Digger.loader.js";
     const config = {
       dataUrl: buildUrl + "/Digger.data.unityweb",
