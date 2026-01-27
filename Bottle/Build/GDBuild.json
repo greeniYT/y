@@ -1,0 +1,14 @@
+
+{
+"companyName": "BestGames",
+"productName": "Bottle Flip 3D",
+"dataUrl": "https://cdn.jsdelivr.net/gh/greeniYT/y@main/Bottle/Build/GDBuild.data.unityweb",
+"wasmCodeUrl": "https://cdn.jsdelivr.net/gh/greeniYT/y@main/Bottle/Build/GDBuild.wasm.code.unityweb",
+"wasmFrameworkUrl": "https://cdn.jsdelivr.net/gh/greeniYT/y@main/Bottle/Build/GDBuild.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}
