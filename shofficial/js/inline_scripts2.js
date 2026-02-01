@@ -14,7 +14,7 @@
 			 document.getElementById("sitelogo").style.display = "none";
 		  }
     }
-    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Smash-Hit.json", {
+    var gameInstance = UnityLoader.instantiate("gameContainer", "https://cdn.jsdelivr.net/gh/greeniYT/y@main/shofficial/Build/Smash-Hit2.json", {
       onProgress: UnityProgress,
       Module: {
         onRuntimeInitialized: function() { UnityProgress(gameInstance, "complete") }
