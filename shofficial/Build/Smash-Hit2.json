@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "https://cdn.jsdelivr.net/gh/greeniYT/y@main/shofficial/Build/Smash-Hit.data.unityweb",
+"asmCodeUrl": "https://cdn.jsdelivr.net/gh/greeniYT/y@main/shofficial/Build/Smash-Hit.asm.code.unityweb",
+"asmMemoryUrl": "https://cdn.jsdelivr.net/gh/greeniYT/y@main/shofficial/Build/Smash-Hit.asm.memory.unityweb",
+"asmFrameworkUrl": "https://cdn.jsdelivr.net/gh/greeniYT/y@main/shofficial/Build/Smash-Hit.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#222C36"
+}
