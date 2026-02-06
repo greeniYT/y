@@ -1,0 +1,67 @@
+{
+  "gameIdOnPortal": "9njb654d39wx",
+  "toolGameId": "LjAlHrOBzjpeDz3HkujY",
+  "gameId": "thief-puzzle",
+  "name": "Thief Puzzle",
+  "version": "1.0.1",
+  "exportedAt": "2025-12-02T22:37:29.171Z",
+  "maxLevels": 403,
+  "features": {
+    "audio": true,
+    "copyright": true,
+    "credits": true,
+    "pause": true,
+    "progress": true,
+    "score": true,
+    "tutorial": true,
+    "version": true,
+    "visibilitychange": true,
+    "iap": true,
+    "home": true,
+    "privacy": true
+  },
+  "ads": {
+    "initial": {
+      "retry": 2000,
+      "timeout": 250,
+      "preload": 250,
+      "enabled": false
+    },
+    "interstitial": {
+      "preload": 250,
+      "retry": 2000,
+      "timeout": 250,
+      "cooldown": 60,
+      "enabled": true,
+      "placement": "breaks",
+      "eventIds": [
+        "button:home:start",
+        "button:level:quit",
+        "break:result",
+        "button:results:replay",
+        "button:results:next"
+      ]
+    },
+    "rewarded": {
+      "retry": 2000,
+      "timeout": 250,
+      "enabled": true,
+      "preload": 500,
+      "eventIds": [
+        "button:level:skip",
+        "button:results:skip"
+      ]
+    },
+    "banner": {
+      "retry": 2000,
+      "timeout": 250,
+      "enabled": false,
+      "preload": 250
+    }
+  },
+  "storage": {
+    "shouldCompress": false,
+    "isLegacyMode": false
+  },
+  "microsoftStart": {}
+}
