@@ -1,0 +1,10 @@
+{
+  "projectId": "melonpg-87aeb",
+  "appId": "1:148385687918:web:a7dee3c171e8da0c4db97f",
+  "databaseURL": "https://melonpg-87aeb-default-rtdb.europe-west1.firebasedatabase.app",
+  "storageBucket": "melonpg-87aeb.appspot.com",
+  "locationId": "europe-west",
+  "authDomain": "melonpg-87aeb.firebaseapp.com",
+  "messagingSenderId": "148385687918",
+  "measurementId": "G-HND1160FBE"
+}
