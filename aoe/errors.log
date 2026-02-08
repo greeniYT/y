@@ -1,0 +1,8 @@
+[2026-02-08T02:30:59.145Z] Error processing URL: https://br.cdn.dos.zone/sockdrive-qcow2/dos.zone-aoe_c/preload_ranges.metaj
+TypeError: Failed to fetch
+    at chrome-extension://deifknnbjkpchacoigdmcleejjjcidao/panel.js:165:49
+    at async Promise.all (index 30)
+    at async HTMLButtonElement.<anonymous> (chrome-extension://deifknnbjkpchacoigdmcleejjjcidao/panel.js:180:13)
+
+[2026-02-08T02:30:59.232Z] Error processing URL: https://br.cdn.dos.zone/sockdrive-qcow2/dos.zone-aoe_d/preload_ranges.metaj
+TypeError: Failed to fetch

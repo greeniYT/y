@@ -1,0 +1,63 @@
+
+{
+    "short_name": "Age of Empires",
+    "name": "Age of Empires | DOS.Zone",
+    "description": "Install Age of Empires",
+    "icons": [
+        {
+            "src": "/age-of-empires-1997/logo256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "/age-of-empires-1997/logo192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/age-of-empires-1997/logo96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        }
+    ],
+    "start_url": "/age-of-empires-1997/index.html",
+    "scope": "/age-of-empires-1997/",
+    "display": "standalone",
+    "shortcuts": [
+        {
+            "name": "Age of Empires",
+            "url": "/age-of-empires-1997/index.html",
+            "icons": [
+                {
+                    "src": "/age-of-empires-1997/logo256.png",
+                    "type": "image/png",
+                    "sizes": "256x256"
+                },
+                {
+                    "src": "/age-of-empires-1997/logo192.png",
+                    "type": "image/png",
+                    "sizes": "192x192"
+                },
+                {
+                    "src": "/age-of-empires-1997/logo96.png",
+                    "type": "image/png",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/age-of-empires-1997/narrow.jpg",
+            "type": "image/jpeg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/age-of-empires-1997/wide.jpg",
+            "type": "image/jpeg",
+            "sizes": "1280x720",
+            "form_factor": "wide"
+        }
+    ]
+}
