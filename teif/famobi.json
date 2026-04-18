@@ -1,0 +1,69 @@
+{
+  "game_i18n": {
+    "default": {
+      "filename.png": "fg_i18n/en/images/filename.png"
+    }
+  },
+  "game_info": {
+    "client_version": "1.4.18"
+  },
+  "features": {
+    "audio": false,
+    "copyright": false,
+    "credits": false,
+    "pause": true,
+    "progress": true,
+    "score": true,
+    "tutorial": true,
+    "version": false,
+    "visibilitychange": true,
+    "iap": true,
+    "home": true,
+    "privacy": false
+  },
+  "toolGameId": "LjAlHrOBzjpeDz3HkujY",
+  "gameId": "thief-puzzle",
+  "version": 3,
+  "ads": {
+    "initial": {
+      "timeout": 250,
+      "retry": 2000,
+      "preload": 250,
+      "enabled": false
+    },
+    "interstitial": {
+      "cooldown": 60,
+      "timeout": 250,
+      "enabled": true,
+      "retry": 2000,
+      "preload": 250,
+      "eventIds": [
+        "button:home:start",
+        "button:level:quit",
+        "button:results:replay",
+        "button:results:next"
+      ]
+    },
+    "rewarded": {
+      "timeout": 250,
+      "enabled": true,
+      "retry": 2000,
+      "preload": 500,
+      "eventIds": [
+        "button:level:skip",
+        "button:results:skip"
+      ]
+    },
+    "banner": {
+      "preload": 250,
+      "retry": 2000,
+      "enabled": false,
+      "timeout": 250
+    },
+    "forcePreloadOnOrientationChange": true
+  },
+  "maxLevels": 403,
+  "gameSnacks": {
+    "shouldSendGameCompleteCount": true
+  }
+}
