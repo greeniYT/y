@@ -1,0 +1,50 @@
+{
+  "name": "Famobi Bouncemasters",
+  "short_name": "Famobi Bouncemasters",
+  "description": "Bouncemasters! Bounce Your Way to Glory! Launch through the air, ricochet off animals, and smash your way to new records! What are you waiting for?",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "id": "bouncemasters",
+  "launch_handler": {
+    "client_mode": "auto"
+  },
+  "ms_start_compatible": true,
+  "categories": [
+    "games"
+  ],
+  "dir": "auto",
+  "orientation": "any",
+  "screenshots": [
+    {
+      "src": "_assets_/screenshots/1920x1080.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "platform": "wide"
+    },
+    {
+      "src": "_assets_/screenshots/1080x1920.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "platform": "narrow"
+    }
+  ],
+  "icons": [
+    {
+      "src": "_assets_/icons/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "_assets_/icons/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "_assets_/icons/1920x1080.png",
+      "sizes": "1920x1080",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "gameIdOnPortal": "9N0JHHN6MB9N",
+  "toolGameId": "lYt3JPrILJdh9KpyUBGX",
+  "gameId": "bouncemasters",
+  "name": "Famobi Bouncemasters",
+  "version": "0.0.6",
+  "exportedAt": "2025-11-28T17:57:51.205Z",
+  "features": {
+    "audio": true,
+    "copyright": true,
+    "credits": true,
+    "pause": true,
+    "progress": true,
+    "score": true,
+    "tutorial": true,
+    "version": true,
+    "visibilitychange": true,
+    "iap": true,
+    "home": true,
+    "privacy": true
+  },
+  "ads": {
+    "initial": {
+      "retry": 2000,
+      "timeout": 250,
+      "preload": 250,
+      "enabled": false
+    },
+    "interstitial": {
+      "preload": 250,
+      "retry": 2000,
+      "timeout": 250,
+      "cooldown": 60,
+      "enabled": true,
+      "placement": "breaks",
+      "eventIds": [
+        "break:result"
+      ]
+    },
+    "rewarded": {
+      "retry": 2000,
+      "timeout": 250,
+      "enabled": true,
+      "preload": 500,
+      "eventIds": [
+        "button:result:claimx",
+        "buttom:menu:upgrade",
+        "button:chestpoup:claim",
+        "button:secondchest:get"
+      ]
+    },
+    "banner": {
+      "retry": 2000,
+      "timeout": 250,
+      "enabled": false,
+      "preload": 250
+    }
+  },
+  "storage": {
+    "shouldCompress": false
+  },
+  "microsoftStart": {}
+}
