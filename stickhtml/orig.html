@@ -1,0 +1,315 @@
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+<!--ripped by greeni-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<base href="https://cdn.jsdelivr.net/gh/greeniYT/stickywicky@main/" target="_blank">
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Supreme Duelist</title>
+  <link rel="stylesheet" href="TemplateData/style.css" nonce="dc5qQ88QYuCCLfulmxJTuw">
+<script nonce="dc5qQ88QYuCCLfulmxJTuw">
+  // Auto-add required URL parameters if not present
+  (function() {
+    const requiredHash = '#flags=%7B"enableServiceWorker"%3Afalse%7D&origin=https%3A%2F%2Fwww.youtube.com';
+    const currentHash = window.location.hash;
+    
+    if (!currentHash || currentHash !== requiredHash) {
+      window.location.hash = requiredHash;
+    }
+  })();
+</script>
+  <script nonce="dc5qQ88QYuCCLfulmxJTuw">
+    // Intercept AudioContext BEFORE the YT API or Unity loads
+    const _OrigAC = window.AudioContext || window.webkitAudioContext;
+    window.AudioContext = window.webkitAudioContext = function(...args) {
+      const ctx = new _OrigAC(...args);
+      window._unityAudioContext = ctx;
+
+      // Block suspend
+      ctx.suspend = () => {
+        console.log('[AudioFix] Blocked AudioContext.suspend()');
+        return Promise.resolve();
+      };
+
+      // Intercept master GainNode to block volume being set to 0
+      const _origCreateGain = ctx.createGain.bind(ctx);
+      ctx.createGain = function() {
+        const gain = _origCreateGain();
+        const _origGainDesc = Object.getOwnPropertyDescriptor(GainNode.prototype, 'gain');
+        Object.defineProperty(gain, 'gain', {
+          get: () => _origGainDesc.get.call(gain),
+          set: (v) => {
+            if (v < 0.1) {
+              console.log('[AudioFix] Blocked gain set to', v);
+              return;
+            }
+            _origGainDesc.set.call(gain, v);
+          }
+        });
+        return gain;
+      };
+
+      return ctx;
+    };
+    window.AudioContext.prototype = _OrigAC.prototype;
+
+    // Poll and force AudioContext to stay running
+    setInterval(() => {
+      if (window._unityAudioContext && window._unityAudioContext.state !== 'running') {
+        console.log('[AudioFix] Resuming AudioContext, state was:', window._unityAudioContext.state);
+        window._unityAudioContext.resume();
+      }
+    }, 500);
+  </script>
+
+  <script src="https://www.youtube.com/game_api/v1" nonce="dc5qQ88QYuCCLfulmxJTuw"></script>
+
+  <script nonce="dc5qQ88QYuCCLfulmxJTuw">
+    // Patch ytgame.system after API loads
+    function patchYTAudio() {
+      if (typeof ytgame !== 'undefined' && ytgame.system) {
+        ytgame.system.isAudioEnabled = () => true;
+        const _orig = ytgame.system.onAudioEnabledChange.bind(ytgame.system);
+        ytgame.system.onAudioEnabledChange = (cb) => {
+          return _orig((enabled) => {
+            console.log('[AudioFix] Intercepted onAudioEnabledChange, forcing true');
+            cb(true);
+          });
+        };
+        console.log('[AudioFix] ytgame.system patched');
+      } else {
+        setTimeout(patchYTAudio, 50);
+      }
+    }
+    patchYTAudio();
+
+    // Block mute postMessages from YouTube host
+    window.addEventListener('message', function(e) {
+      try {
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        if (data && (data.muted === true || data.type === 'mute')) {
+          console.log('[AudioFix] Blocked mute message');
+          e.stopImmediatePropagation();
+          return;
+        }
+      } catch(_) {}
+    }, true);
+  </script>
+</head>
+
+<body>
+  <div id="unity-container" class="unity-desktop">
+    <canvas id="unity-canvas" width=100% height=100% tabindex="-1"></canvas>
+    <div id="unity-loading-bar">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+    <div id="unity-warning"> </div>
+  </div>
+
+  <script src="unarchiver.min.js" nonce="dc5qQ88QYuCCLfulmxJTuw"></script>
+  <script nonce="dc5qQ88QYuCCLfulmxJTuw">
+    var container = document.querySelector("#unity-container");
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+    var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+    var fullscreenOverlayButton = document.querySelector("#unity-overlay-fullscreen-button");
+    var quitcanvas = document.querySelector("#quit-canvas");
+    var warningBanner = document.querySelector("#unity-warning");
+
+    function unityShowBanner(msg, type) {}
+
+    var buildUrl = "https://cdn.jsdelivr.net/gh/greeniYT/stickywicky@main/Build";
+    var loaderUrl = buildUrl + "/YTPlayables.loader.js";
+    var config = {
+      dataUrl: buildUrl + "/YTPlayables.data.gz",
+      frameworkUrl: buildUrl + "/YTPlayables.framework.js.gz",
+      codeUrl: buildUrl + "/YTPlayables.wasm.gz",
+      streamingAssetsUrl: "https://cdn.jsdelivr.net/gh/greeniYT/stickywicky@9f5aa0e5dc4708a05d72ef330699421a58f841eb/StreamingAssets/",
+      autoSyncPersistentDataPath: true,
+      companyName: "Neron's Brother",
+      productName: "Supreme Duelist",
+      productVersion: "1.0.16.0002",
+      showBanner: unityShowBanner,
+    };
+
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      var meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+      document.getElementsByTagName('head')[0].appendChild(meta);
+      container.className = "unity-mobile";
+      canvas.className = "unity-mobile";
+    } else {
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+    }
+
+    loadingBar.style.display = "block";
+
+    loadResources = (callback) => {
+      const subZipStr = '.zip';
+      const subWASMStr = '.wasm';
+      const subJSStr = '.js';
+
+      var codeUrl = config.codeUrl;
+      var shouldDecompress = true;
+
+      if (!codeUrl.includes(subZipStr)) {
+        if (UrlExists(codeUrl + subZipStr)) {
+          codeUrl = codeUrl + subZipStr;
+        } else {
+          shouldDecompress = false;
+        }
+      }
+
+      if (shouldDecompress) {
+        var blobType = 'application/octet-stream';
+        if (codeUrl.includes(subWASMStr)){
+          blobType = 'application/wasm';
+        } else if (codeUrl.includes(subJSStr)){
+          blobType = 'text/javascript';
+        }
+        DecompressFile(codeUrl, blobType, (file) => {
+          config.codeUrl = file;
+          callback();
+        });
+      } else {
+        callback();
+      }
+    }
+
+    loadZipData = (url, callback) => {
+      fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+          callback(blob);
+        });
+    }
+
+    function UrlExists(urlToCheck) {
+      var httpReq = new XMLHttpRequest();
+      httpReq.open('HEAD', urlToCheck, false);
+      httpReq.send();
+      return httpReq.status!=404;
+    }
+
+    function DecompressFile(file, blobMimeType, callback) {
+      let decompressedFile;
+      loadZipData(file, (f) => {
+        Unarchiver.open(f).then(async function (archive) {
+          for (let entry of archive.entries) {
+            if (entry.is_file) {
+              let entryRead = await entry.read();
+              let entryData = await entryRead.arrayBuffer();
+              let dataBlob = new Blob([new Uint8Array(entryData)], { type: blobMimeType });
+              decompressedFile = window.URL.createObjectURL(dataBlob);
+            }
+          }
+          callback(decompressedFile);
+        });
+      });
+    }
+
+    var unityGameInstance = null;
+
+    function InitUnitySection() {
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          unityGameInstance = unityInstance;
+          loadingBar.style.display = "none";
+
+          // Force audio unmute after Unity finishes loading
+          setTimeout(() => {
+            if (window._unityAudioContext) {
+              window._unityAudioContext.resume();
+              console.log('[AudioFix] Forced AudioContext resume after Unity load');
+            }
+          }, 1000);
+
+        }).catch((message) => {
+          console.error(message);
+        });
+      };
+      document.body.appendChild(script);
+    }
+
+    function GetGzipUrl(url) {
+      return url + "ip";
+    }
+
+    function DecompressGzipFiles(callback) {
+      const wasmUrl = GetGzipUrl(config.codeUrl);
+      fetch(wasmUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          console.log("gzipped blob loaded!!! " + blob.type);
+          const ds = new DecompressionStream("gzip");
+          const decompressedStream = blob.stream().pipeThrough(ds);
+          new Response(decompressedStream).blob()
+            .then(async unzippedBlob => {
+              console.log("gzip should be decompressed!");
+              unzippedBlob.type = "application/wasm";
+              decompressedUrl = window.URL.createObjectURL(unzippedBlob);
+              config.codeUrl = decompressedUrl;
+
+              const dataUrl = GetGzipUrl(config.dataUrl);
+              fetch(dataUrl)
+                .then(response => response.blob())
+                .then(blob => {
+                  blob.type = "application/x-gzip-compressed";
+                  const ds = new DecompressionStream("gzip");
+                  const decompressedStream = blob.stream().pipeThrough(ds);
+                  new Response(decompressedStream).blob()
+                    .then(async unzippedBlob => {
+                      unzippedBlob.type = "application/octet-stream";
+                      decompressedUrl = window.URL.createObjectURL(unzippedBlob);
+                      config.dataUrl = decompressedUrl;
+
+                      const frameworkUrl = GetGzipUrl(config.frameworkUrl);
+                      fetch(frameworkUrl)
+                        .then(response => response.blob())
+                        .then(blob => {
+                          const ds = new DecompressionStream("gzip");
+                          const decompressedStream = blob.stream().pipeThrough(ds);
+                          new Response(decompressedStream).blob()
+                            .then(async unzippedBlob => {
+                              unzippedBlob.type = "text/javascript";
+                              decompressedUrl = window.URL.createObjectURL(unzippedBlob);
+                              config.frameworkUrl = decompressedUrl;
+                              callback();
+                            })
+                            .catch(err => console.error("gzip decompress error: " + err));
+                        });
+                    })
+                    .catch(err => console.error("gzip decompress error: " + err));
+                });
+            })
+            .catch(err => console.error("gzip decompress error: " + err));
+        });
+    }
+
+    if (config.dataUrl.includes(".gz")) {
+      DecompressGzipFiles(InitUnitySection);
+    } else {
+      InitUnitySection();
+    }
+
+  </script>
+</body>
+</html>
