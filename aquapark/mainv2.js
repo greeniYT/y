@@ -259,7 +259,7 @@ function onYoutubeDataLoaded(data) {
   preloadWasmScreen();
 }
 
-var buildUrl = "Build";
+var buildUrl = "https://cdn.jsdelivr.net/gh/greeniYT/y@main/aquapark/Build";
 var loaderUrl = buildUrl + "/aquapark_v1.5.loader.js";
 
 var config = {
