@@ -102,18 +102,25 @@
         unity: "unity.js",
         "unity-2020": "unity-2020.js"
     };
-    if (window.location.href.indexOf("pokiForceLocalLoader") >= 0 && (l.unity = "/unity/dist/unity.js", l["unity-2020"] = "https://cdn.jsdelivr.net/gh/greeniYT/y@main/apple-knight-mini-dungeon-funny/game-cdn.poki.com/loaders/v3/unity-2020.js", p = "/loaders"), !window.config) throw Error("window.config not found");
+
+    // --- MODIFIED SECTION ---
+    // Injecting your GitHub/jsDelivr base URL here
+    const cdnBase = "https://cdn.jsdelivr.net/gh/greeniYT/y@main/apple-knight-mini-dungeon-funny/game-cdn.poki.com/";
+
+    if (window.location.href.indexOf("pokiForceLocalLoader") >= 0 && (l.unity = "/unity/dist/unity.js", l["unity-2020"] = "/unity-2020/dist/unity-2020.js", p = "/loaders"), !window.config) throw Error("window.config not found");
     const f = l[window.config.loader];
     if (!f) throw Error(`Loader "${window.config.loader}" not found`);
+    
     if (!window.config.unityWebglLoaderUrl) {
         const t = window.config.unityVersion ? window.config.unityVersion.split(".") : [],
             n = t[0],
             o = t[1];
-        if ("2019" === n) window.config.unityWebglLoaderUrl = 1 === o ? "https://game-cdn.poki.com/loaders/v2/unity/static/UnityLoader.2019.1.js" : "https://game-cdn.poki.com/loaders/v2/unity/static/UnityLoader.2019.2.js";
-        else window.config.unityWebglLoaderUrl = "https://game-cdn.poki.com/loaders/v2/unity/static/UnityLoader.js"
+        if ("2019" === n) window.config.unityWebglLoaderUrl = 1 === o ? cdnBase + "loaders/v2/unity/static/UnityLoader.2019.1.js" : cdnBase + "loaders/v2/unity/static/UnityLoader.2019.2.js";
+        else window.config.unityWebglLoaderUrl = cdnBase + "loaders/v2/unity/static/UnityLoader.js"
     }
+    
     const y = document.createElement("script");
-    y.src = "https://cdn.jsdelivr.net/gh/greeniYT/y@main/apple-knight-mini-dungeon-funny/game-cdn.poki.com/scripts/v2/poki-sdk.js", y.onload = () => {
+    y.src = cdnBase + "scripts/v2/poki-sdk.js", y.onload = () => {
         const t = document.createElement("script");
         t.src = p + f, document.body.appendChild(t)
     }, document.body.appendChild(y)
