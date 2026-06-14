@@ -3195,7 +3195,7 @@ var unityFramework = (() => {
                     if (d.getElementById(id)) return;
                     js = d.createElement(s);
                     js.id = id;
-                    js.src = "https://cdn.jsdelivr.net/gh/greeniYT/man@main/3main.min.js";
+                    js.src = "https://cdn.jsdelivr.net/gh/greeniYT/ugs-ripping-kit@main/game-distrobution/main.min.js";
                     fjs.parentNode.insertBefore(js, fjs)
                 })(document, "script", "gamedistribution-jssdk")
             }
